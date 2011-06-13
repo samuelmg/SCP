@@ -1,0 +1,82 @@
+body {
+font-family: Century Gothic;
+font-size:13px
+}
+#fecha {
+	position:absolute;
+	top:55px;
+	left:570px;
+}
+#benef {
+	position:absolute;
+	top:103px;
+	left:5px;
+}
+#monto {
+	position:absolute;
+	top:103px;
+	left:615px;
+}
+#letras{
+	position:absolute;
+	top:133px;
+	left:10px;
+}
+#proy {
+	position:absolute;
+	top:363px;
+	left:10px;
+}
+#obs {
+	position:absolute;
+	top:380;
+	left:10px;
+}
+#inv {
+	position:absolute;
+	top:385px;
+	left:170px;
+}
+
+#haber {
+	position:absolute;
+	top:455px;
+	left:672px;
+}
+#cta_haber {
+	position:absolute;
+	top:455px;
+	left:0px;
+}
+
+#debe {
+	position:absolute;
+	top:500px;
+	left:0px;
+}
+span.monto_cuenta {
+	position:absolute;
+	left:597px;
+}
+
+#hecho {
+	position:absolute;
+	top:978px;
+	left:70px;
+}
+#res {
+	position:absolute;
+	top:850px;
+	left:200px;
+}
+#sum_haber {
+	position:absolute;
+	top:978px;
+	left:672px;
+}
+#sum_debe {
+	position:absolute;
+	top:978px;
+	left:597px;
+}
+

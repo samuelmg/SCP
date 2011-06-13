@@ -1,0 +1,5 @@
+AuthName "Directivos"
+AuthType Basic
+AuthUserFile /var/www/passwd/psw
+AuthGroupFile /var/www/passwd/group
+Require Group directivos
