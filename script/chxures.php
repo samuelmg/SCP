@@ -43,20 +43,4 @@ while ($arr_ch = mysql_fetch_array($qry_ch)){
 echo ("<tr><td></td> <td></td><td></td><td></td><td></td><td id='total'>".number_format($sum_monto,2)."</td></tr>");
 echo ("</tbody></table>");
 }
-
-function cheques($seleccion){
-$sql_ch = "select p.ures, ch.cta_b, ch.cheque, ch.fecha, b.benef, sum(ch.monto), ch.proy, ch.estatus, ch.oficio from tbl_cheques ch, tbl_benef b, tbl_proyectos p where ch.benef_id=b.benef_id and ch.proy=p.proy and p.ures $seleccion group by ch.cta_b, ch.cheque, ch.fecha, b.benef, ch.proy, ch.estatus, ch.oficio order by ch.cta_b, ch.cheque";
-$qry_ch = mysql_query($sql_ch);
-
-echo ("<table id='info' border='1'><thead><tr> <th>URes</th> <th>Cta Bancaria</th> <th>Cheque</th> <th>Fecha</th> <th>Beneficiario</th> <th>Monto</th> <th>Proyecto</th> <th>Estatus</th> <th>Oficio</th> </tr></thead><tbody>");
-$renglon='non';//cambio de color en renglones
-while ($arr_ch = mysql_fetch_array($qry_ch)){
-	echo ("<tr id='$renglon'> <td>".$arr_ch['ures']."</td> <td align='center'>".$arr_ch['cta_b']."</td> <td align='center'>".$arr_ch['cheque']."</td> <td>".$arr_ch['fecha']."</td> <td id='benef'>".utf8_decode($arr_ch['benef'])."</td> <td id='monto'>".number_format($arr_ch['sum(ch.monto)'],2)."</td> <td>".$arr_ch['proy']."</td> <td>".$arr_ch['estatus']."</td> <td>".$arr_ch['oficio']."</td></tr>");
-	$sum_cheques+=$arr_ch['sum(ch.monto)'];
-	if ($renglon=='non'){$renglon='par';}else{$renglon='non';}//cambio de color en renglones
-	}
-echo ("<tr><td colspan='5'><td id='total'>".number_format($sum_cheques,2)."</td></tr>");
-echo ("</tbody></table>");
-}
-
 ?>

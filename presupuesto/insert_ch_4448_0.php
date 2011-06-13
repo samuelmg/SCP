@@ -17,7 +17,7 @@ $fecha=getdate();
 $d=$fecha['mday'];
 $m=$fecha['mon'];
 //echo("Hoy es: ".$fecha['mday']."/".$fecha['mon']."/".$fecha['year']."</div>");//Muestra la fecha actual
-echo ("<table><thead><tr><td>Día</td><td>Mes</td><td>Año</td></tr></thead><tbody><tr> <td><input type='text' size='2' maxlength='2' name='d' value='$d'/></td> <td><input type='text' size='2' maxlength='2' name='m' value='$m' /></td> <td><input type='hidden' value='2008' size='4' name='a' />2008</td> </tr></tbody></table>");
+echo ("<table><thead><tr><td>Día</td><td>Mes</td><td>Año</td></tr></thead><tbody><tr> <td><input type='text' size='2' maxlength='2' name='d' value='$d'/></td> <td><input type='text' size='2' maxlength='2' name='m' value='$m' /></td> <td><input type='hidden' value='2007' size='4' name='a' />2007</td> </tr></tbody></table>");
 
 echo ("<table cellspacing='5'><thead><tr> <th>No. Cheque</th> <th>Beneficiario</th> <th>Monto</th></tr></thead> <tbody align='center'><tr>");
 

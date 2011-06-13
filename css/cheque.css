@@ -9,17 +9,17 @@ font-size:13px
 }
 #benef {
 	position:absolute;
-	top:103px;
+	top:98px;
 	left:5px;
 }
 #monto {
 	position:absolute;
-	top:103px;
+	top:98px;
 	left:615px;
 }
 #letras{
 	position:absolute;
-	top:133px;
+	top:128px;
 	left:10px;
 }
 #proy {
@@ -32,10 +32,10 @@ font-size:13px
 	top:380;
 	left:10px;
 }
-#inv {
+#id_par {
 	position:absolute;
-	top:385px;
-	left:170px;
+	top:395px;
+	left:10px;
 }
 
 #haber {
@@ -79,4 +79,3 @@ span.monto_cuenta {
 	top:978px;
 	left:597px;
 }
-

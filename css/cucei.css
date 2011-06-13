@@ -2,25 +2,25 @@ A:link { color: #000000 }
 A:visited { color: #000000 }
 A:active { color: #FFCC00 }
 A:hover { color: #000000; }
-h1,h2,h3,h4,h5 { text-align: center; }
+h1,h2,h5 { text-align: center; }
 h5 {margin: 0.2em;}
 body {
 /*margin-left: 1%;
 margin-right: 1%;*/
 color: #000000;
-background: #E6F0FF;
-}
-#hoy {
-text-align: center;
-font-weight: bold;
+background: #FFFFFF;
 }
 #menu {
 float: left;
 margin-left: 4px;
 text-align: center;
-width: 15%;
+width: 170px;
 border: thin;
 background: #A0C6FF;
+}
+#base_x {/*Aparta la información del menu izquierdo*/
+	margin-left:175px;
+	padding-left:5px;
 }
 h5#btn {
 margin: 0.0em;
@@ -36,6 +36,42 @@ border-color: #000000;
 border-style: solid;
 border-width: thin;
 }
+h5.btn {
+margin: 0.0em;
+background: #ABD8FF;
+border-color: #000000;
+border-style: solid;
+border-width: thin;
+}
+.btn_h {
+margin: 0.2em;
+background: #ABD8FF;
+border-color: #000000;
+border-style: solid;
+border-width: thin;
+}
+
+/*Bloques de información*/
+.block{
+border-color: #000000;
+border-style: solid;
+border-width: thin;
+margin: 0em 1em 1em 1em;
+padding: 1em;
+background: #C9E2FF
+}
+.block_tit{
+width:35%;
+border-color: #000000;
+border-top: solid;
+border-right: solid;
+border-left: solid;
+border-width: thin;
+margin: 1em 1em 0em 1em;
+padding-left: 0.5em;
+background: #C9E2FF
+}
+
 a#btn, a#btn_h {text-decoration: none;}
 #btn:hover {background: #4080FF;}
 #btn_h:hover {background: #4080FF;}
@@ -53,5 +89,24 @@ padding:1em;
 border: 3px solid #FDFD28;
 font-weight: 550;
 }
-table#info {background:#F7FFC0}
-thead {background:#FFC04C}
+table#info {border-collapse:collapse;}/*Eliminar*/
+table.info {border-collapse:collapse;}
+thead {background:#4F94CD}
+td,th{padding-left:5px; padding-right:5px; text-align:center}
+tr#non{background:#9AC0CD}/*LightBlue 3*//*Eliminar*/
+tr#par{background:#B9D3EE}/*SlateGrey*//*Eliminar*/
+tr#non:hover{background:#E0FFFF;}/*LightCyan*//*Eliminar*/
+tr#par:hover{background:#E0FFFF;}/*Eliminar*/
+
+tr.non{background:#9AC0CD}/*LightBlue 3*/
+tr.par{background:#B9D3EE}/*SlateGrey*/
+tr.non:hover{background:#E0FFFF;}/*LightCyan*/
+tr.par:hover{background:#E0FFFF;}
+
+td#monto{text-align:right}/*Eliminar*/
+td#benef{text-align:left}/*Eliminar*/
+td#total{font-weight: 700;text-align:right;}/*Eliminar*/
+
+td.monto{text-align:right}
+td.txt{text-align:left}
+td.total{font-weight: 700;text-align:right;}

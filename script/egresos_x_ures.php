@@ -1,6 +1,6 @@
 <?php
 function egresos($seleccion){
-$sql_e = "select e.fecha, e.proy, e.cta, e.monto, e.cmt from tbl_egresos e, tbl_proyectos p where e.proy=p.proy and p.ures $seleccion order by e.fecha, e.proy";
+$sql_e = "select e.fecha, e.proy, e.cta, e.monto, e.cmt from tbl_egresos e, tbl_proyectos p where e.proy=p.proy and e.tipo='Cargo a Proyeco' and p.ures $seleccion order by e.fecha, e.proy";
 $qry_e = mysql_query($sql_e);
 
 echo ("<table id='info' border='1'><thead><tr> <th>Fecha</th> <th>Proyecto</th> <th>Cuenta</th> <th>Monto</th> <th>Comentarios</th> </tr></thead><tbody>");
@@ -13,7 +13,7 @@ echo ("</tbody></table>");
 }
 
 function egresos_sel($seleccion,$filtro){//Funcion para elegir egresos segun usuario y filtro. Agrega un checkbox para seleccionar el egreso --El filtro selecciona el responsable de la poliza
-$sql_e = "select e.fecha, e.cta_b, e.no_t, b.benef, sum(e.monto), e.cmt, e.estatus, e.proy, e.responsable from tbl_egresos e, tbl_benef b, tbl_proyectos p where e.benef_id=b.benef_id and e.proy=p.proy $filtro group by e.fecha, e.cta_b, e.no_t, b.benef, e.cmt, e.estatus, e.proy, e.responsable order by e.cta_b, e.fecha";
+$sql_e = "select e.fecha, e.cta_b, e.no_t, b.benef, sum(e.monto), e.cmt, e.estatus, e.proy, e.responsable from tbl_egresos e, tbl_benef b, tbl_proyectos p where e.benef_id=b.benef_id and e.proy=p.proy and e.tipo='Cargo a Proyeco' $filtro group by e.fecha, e.cta_b, e.no_t, b.benef, e.cmt, e.estatus, e.proy, e.responsable order by e.cta_b, e.fecha";
 $qry_e = mysql_query($sql_e);
 echo ("<table id='info' align='center'><thead><tr> <th>Fecha</th> <th>Cuenta</th> <th>No. Transferencia</th> <th>Seleccionar</th> <th>Beneficiario</th> <th>Monto</th> <th>Comentario</th> <th>Proyecto</th> <th>Responsable</th> <th>Estatus</th> <th>Comprueba</th> </tr></thead><tbody>");
 $renglon='non';//cambio de color en renglones
@@ -27,7 +27,7 @@ echo ("</tbody></table>");
 }
 
 function egresos_sel_oficio($seleccion,$filtro){//Funcion para elegir transferencias a las que se desea capturar el oficio
-$sql_e = "select e.fecha, e.cta_b, e.no_t, b.benef, sum(e.monto), e.cmt, e.proy, e.estatus, e.oficio from tbl_egresos e, tbl_benef b, tbl_proyectos p where e.benef_id=b.benef_id and e.proy=p.proy and p.ures $seleccion $filtro and (e.oficio is null or e.oficio='') group by e.fecha, e.cta_b, e.no_t, b.benef, e.proy, e.oficio order by e.cta_b, e.no_t";
+$sql_e = "select e.fecha, e.cta_b, e.no_t, b.benef, sum(e.monto), e.cmt, e.proy, e.estatus, e.oficio from tbl_egresos e, tbl_benef b, tbl_proyectos p where e.benef_id=b.benef_id and e.proy=p.proy and e.tipo='Cargo a Proyeco' and p.ures $seleccion $filtro and (e.oficio is null or e.oficio='') group by e.fecha, e.cta_b, e.no_t, b.benef, e.proy, e.oficio order by e.cta_b, e.no_t";
 $qry_e = mysql_query($sql_e);
 echo ("<table id='info'><thead><tr> <th>Fecha</th> <th>Cuenta</th> <th>No. Transferencia</th> <th>Seleccionar</th> <th>Beneficiario</th> <th>Monto</th> <th>Comentario</th> <th>Proyecto</th> <th>Estatus</th> <th>Oficio</th> <th>Responsable</th> </tr></thead><tbody>");
 $renglon='non';//cambio de color en renglones

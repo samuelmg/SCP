@@ -12,7 +12,7 @@ $i = $_POST['i'];	//Contador de Registros
 
 
 if($i=='1'){
-	if(mysql_query("update tbl_cheques set proy=0, cta=0, monto=0, benef_id=37, obs='' where cta_b=$cta_b and cheque=$cheque")) {
+	if(mysql_query("update tbl_cheques set proy=0, cta=0, monto=0, benef_id=37, cmt='' where cta_b=$cta_b and cheque=$cheque")) {
 		echo ("<p><h3>Cancelación Realizada con Exito</h3>");
 		consulta($cta_b,$cheque);
 	}
@@ -24,7 +24,7 @@ if($i=='1'){
 	echo ("<a id='btn_h' target='_self' href='./cancelar_ch_0.php'>Cancelar Otro Cheque</a></p>");
 }
 else{
-	mysql_query("update tbl_cheques set proy=0, cta=0, monto=0, benef_id=37, obs='', id='', responsable='' where cta_b=$cta_b and cheque=$cheque");
+	mysql_query("update tbl_cheques set proy=0, cta=0, monto=0, benef_id=37, cmt='', id='', responsable='' where cta_b=$cta_b and cheque=$cheque");
 	echo ("<p><h3>Cancelación Realizada con Exito</h3>");
 	if(mysql_query("delete from tbl_cheques where cta_b=$cta_b and cheque=$cheque and cta!=0")){
 		echo ("<p><h3>Eliminación de Registros Realizada con Exito</h3>");

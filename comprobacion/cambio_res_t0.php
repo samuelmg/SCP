@@ -1,25 +1,3 @@
-<?php
-/*
- * cambio_res_t0.php
- * 
- * Copyright (C) 2006 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-?>
 <html>
 <head><TITLE>Cambio de Responsable de Transferencias</TITLE>
 <link rel="stylesheet" href="../css/cucei.css" />
@@ -39,10 +17,10 @@ switch ($usr){
 	case raul: $filtro='and e.responsable = "Raul" and e.estatus in ("Facturas","Comprobado")';break;
 	case samuel: $filtro='and e.responsable = ""';break;
 	case norma: $filtro='and e.responsable = ""';break;
-	case cuquis: $filtro='and e.responsable = "Cuquis"';break;
+	case priscilla: $filtro='and e.responsable = "Priscilla"';break;
 	case blanca: $filtro='and e.responsable = "Blanca"';break;
 	case chelo: $filtro='and e.responsable = "Chelo"';break;
-	case karla: $filtro='and e.responsable = "Karla"';break;
+	case martha: $filtro='and e.responsable = "Martha"';break;
 }
 
 echo ("<form action='cambio_res_t1.php' method='post'>");
@@ -51,7 +29,7 @@ echo ("<table align='center'><tr><td><button type='submit'>Aceptar</button></td>
 echo ("<td><button type='reset'>Limpiar</button></td> </tr></table>");
 echo ("</form>");
 ?>
-<!--Menï¿½ de Navegaciï¿½n-->
-<hr /><p><a id="btn_h" target="_self" href="./comprobacion.html">Menï¿½ Principal</a></p>
+<!--Menú de Navegación-->
+<hr /><p><a id="btn_h" target="_self" href="./comprobacion.html">Menú Principal</a></p>
 </body>
 </html>

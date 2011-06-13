@@ -18,8 +18,7 @@ while ($arr_proy = mysql_fetch_array($qry_proy)){
 	}
 
 $fecha=getdate();
-//$año=$fecha['year'];
-$año=2007;
+$año=$fecha['year'];
 
 $periodo[0] = "'".$año."-01-01' and '".$año."-06-30'";
 $periodo[1] = "'".$año."-01-01' and '".$año."-01-31'";
@@ -42,16 +41,7 @@ for ($i=0; $i < sizeof($proy); $i++){
 		$sql_mes = "select sum(monto) from tbl_cheques where proy = $proy[$i] and fecha between $periodo[$j]";
 		$qry_mes = mysql_query($sql_mes);
 		$arr_mes = mysql_fetch_array($qry_mes);
-		$monto_ch = $arr_mes['sum(monto)'];
-
-		$sql_e = "select sum(monto) from tbl_egresos where proy = $proy[$i] and tipo != 'Devolucion' and fecha between $periodo[$j]";
-		$qry_e = mysql_query($sql_e);
-		$arr_e = mysql_fetch_array($qry_e);
-		$monto_e = $arr_e['sum(monto)'];
-
-		$total_mes = $monto_ch + $monto_e;
-
-		echo ("<td id='monto'>".number_format($total_mes,2)."</td>");
+		echo ("<td id='monto'>".number_format($arr_mes['sum(monto)'],2)."</td>");
 	}
 	echo ("</tr>");
 }

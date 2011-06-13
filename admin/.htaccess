@@ -1,5 +1,5 @@
 AuthName "Administracion"
 AuthType Basic
-AuthUserFile /var/www/passwd/psw
-AuthGroupFile /var/www/passwd/group
+AuthUserFile /srv/www/passwd/psw
+AuthGroupFile /srv/www/passwd/group
 Require Group admin

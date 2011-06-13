@@ -1,27 +1,5 @@
-<?php
-/*
- * cambio_estatus_1.php
- * 
- * Copyright (C) 2005 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-?>
 <html>
-<head><TITLE>Estatus de ComprobaciÃ³n</TITLE>
+<head><TITLE>Estatus de Comprobación</TITLE>
 <link rel="stylesheet" href="../css/cucei.css" />
 </head>
 <body>
@@ -40,7 +18,7 @@ echo ("</tbody></table>");
 if ($usr=='raul'){//Solo Raul o Norma pueden hacer cambio a Sin Comprobar
 	echo ("<table align='center'><tr><td>Estatus</td><td>Seguimiento</td></tr><tr><td><select name='estatus'> <option>Sin Comprobar</option> <option>Facturas</option> <option>Alta Pendiente</option> <option>Comprobado</option> </select></td><td><input type='text' size='32' maxlength='30' name='seg'></td></tr></table>");
 }
-elseif ($usr=='karla' || $usr=='blanca' || $usr=='chelo'){//El ï¿½rea de comprobaciï¿½n puede modificar a Facturas, Alta Pendiente o Comrpobado
+elseif ($usr=='martha' || $usr=='blanca' || $usr=='chelo'){//El área de comprobación puede modificar a Facturas, Alta Pendiente o Comrpobado
 	echo ("<table align='center'><tr><td>Estatus</td><td>Seguimiento</td></tr><tr><td><select name='estatus'> <option>Facturas</option> <option>Alta Pendiente</option> <option>Comprobado</option> </select></td><td><input type='text' size='32' maxlength='30' name='seg'></td></tr></table>");
 }
 else{echo ("<h3>NO TIENE DERECHOS PARA MODIFICAR ESTE CAMPO</h3>");}
@@ -50,7 +28,7 @@ echo ("<td><button type='reset' name='limpiar'>Limpiar</button></td> </tr></tabl
 echo ("</form>");
 
 ?>
-<!--Menï¿½ de Navegaciï¿½n-->
-<hr /><p><a id="btn_h" target="_self" href="./comprobacion.html">Menï¿½ Principal</a>
-<a id="btn_h" target="_self" href="./cambio_estatus_0.php">Cambiar Selecciï¿½n</a></p>
+<!--Menú de Navegación-->
+<hr /><p><a id="btn_h" target="_self" href="./comprobacion.html">Menú Principal</a>
+<a id="btn_h" target="_self" href="./cambio_estatus_0.php">Cambiar Selección</a></p>
 </body>	

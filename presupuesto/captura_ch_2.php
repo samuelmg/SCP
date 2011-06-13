@@ -14,7 +14,7 @@ $cta=$_POST['cta'];
 settype($_POST['benef_id'],integer);
 $benef_id=$_POST['benef_id'];
 $monto=$_POST['monto'];
-$obs=$_POST['obs'];
+$cmt=$_POST['cmt'];
 $id=$_POST['id'];
 $d=$_POST['d'];
 $m=$_POST['m'];
@@ -41,9 +41,9 @@ if (checkdate($m,$d,$a)){
 
 	if ($cheque != 0 && $benef_id != 0 && $monto != 0){
 
-	if(mysql_query("insert into tbl_cheques values ('$fecha','$cta_b','$cheque','$proy','$cta','$benef_id','$monto','$obs','$id','','','','','')")){
+	if(mysql_query("insert into tbl_cheques values ('$fecha','$cta_b','$cheque','$proy','$cta','$benef_id','$monto','$cmt','$id','','','','','')")){
 	echo ("<p><h3>Captura realizada con Exito</h3>");
-	echo ("<table align='center' border='1'><tr> <td>Fecha</td> <td>Cta Bancaria</td> <td>No. Cheque</td> <td>Proyecto<td>Cuenta (OG)</td><td>ID Beneficiario</td> <td>Monto</td> <td>Observaciones</td> <td>Id. (Participables)</td> </tr><tr> <td>".$fecha."</td> <td>".$cta_b."</td> <td>".$cheque."</td> <td>".$proy."</td> <td>".$cta."</td> <td>".$benef_id."</td> <td>".$monto."</td> <td>".$obs."</td> <td>".$id."</td> <td>".$estatus."</td> </tr></table>");
+	echo ("<table align='center' border='1'><tr> <td>Fecha</td> <td>Cta Bancaria</td> <td>No. Cheque</td> <td>Proyecto<td>Cuenta (OG)</td><td>ID Beneficiario</td> <td>Monto</td> <td>Observaciones</td> <td>Id. (Participables)</td> </tr><tr> <td>".$fecha."</td> <td>".$cta_b."</td> <td>".$cheque."</td> <td>".$proy."</td> <td>".$cta."</td> <td>".$benef_id."</td> <td>".$monto."</td> <td>".$cmt."</td> <td>".$id."</td> <td>".$estatus."</td> </tr></table>");
 
 	//Formulario oculto para capturar otra Cuenta (OG) para el mismo cheque
 /*	echo ("<p><form action='captura_ch_1.php' method='post'>");

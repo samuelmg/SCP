@@ -11,14 +11,10 @@ conect_usr();
 $fndo[1]="1101";
 $fndo[2]="1102";
 $fndo[3]="1103";
-$fndo[4]="110407";//ADQ MAT BIBLIO
-$fndo[5]="3102";//COMP
-$fndo[6]="110403";//PXP
-$fndo[7]="110616";//COMP INST
-$fndo[8]="110409";//FIP
-$fndo[9]="110412";//PICASA
-$fndo[10]="110416";//PONENTES
-$fndo[11]="110406";//FIL
+$fndo[4]="110407";
+$fndo[5]="3102";
+$fndo[6]="110403";
+$fndo[7]="110616";
 
 $titulo[1]="FONDO 1101 ORDINARIO";
 $titulo[2]="FONDO 1102 EXTRAORDINARIO";
@@ -27,12 +23,8 @@ $titulo[4]="FONDO 110407 Adq. Matrrial Bibliográfico";
 $titulo[5]="FONDO 3102 FAM/CAPECE";
 $titulo[6]="FONDO 110403 PESO X PESO";
 $titulo[7]="FONDO 110616 COMPROMISOS DEP. ING. PROY.";
-$titulo[8]="FONDO 110409 FONDO INSTITUCIONAL PARTICIPABLE";
-$titulo[9]="FONDO 110412 PICASA";
-$titulo[10]="FONDO 110416 APOYO A PONENTES";
-$titulo[11]="FONDO 110406 ADQUISICION FIL";
 
-for ($i=0; $i<12; $i++){
+for ($i=0; $i<8; $i++){
 	$fondo=$fndo[$i];
 	$head=$titulo[$i];
 	proy_x_prog($fondo, $head);
@@ -62,7 +54,7 @@ while ($arr_proy = mysql_fetch_array($qry_proy)){
 }
 $fecha=getdate();
 $año=$fecha['year'];
-$periodo = "'2007-01-01' and '2007-12-31'";
+$periodo = "'".$año."-01-01' and '".$año."-06-30'";
 for ($i=0; $i < sizeof($proy); $i++){
 	$sql_t = "select sum(monto) from tbl_transferencias where proy='$proy[$i]' and fecha between $periodo";
 	$qry_t = mysql_query($sql_t);
@@ -73,7 +65,7 @@ for ($i=0; $i < sizeof($proy); $i++){
 	$qry_ch = mysql_query($sql_ch);
 	$arr_ch = mysql_fetch_array($qry_ch);
 	$ch[$i] = $arr_ch['sum(monto)'];
-	$sql_e = "select sum(monto) from tbl_egresos where proy='$proy[$i]' and tipo != 'Devolucion' and fecha between $periodo";
+	$sql_e = "select sum(monto) from tbl_egresos where proy='$proy[$i]' and fecha between $periodo";
 	$qry_e = mysql_query($sql_e);
 	$arr_e = mysql_fetch_array($qry_e);
 	$e[$i] = $arr_e['sum(monto)'];
@@ -88,7 +80,7 @@ for ($i=0; $i < sizeof($proy); $i++){
 	$arr_comprobado = mysql_fetch_array($qry_comprobado);
 	$comprobado[$i] = $arr_comprobado['sum(monto)'];
 }
-echo ("<table id='info' border='1'><thead><tr><th colspan='8'>".$head." - Enero - Diciembre 2007</tr><tr><th>Proyecto</th> <th>Desc. Proyecto</th> <th>Programa</th> <th>Sub Programa</th> <th>Asignado Anual</th> <th>Recibido</th> <th>Ejercido</th> <th>Comprobado</th></tr></thead>");
+echo ("<table id='info' border='1'><thead><tr><th colspan='8'>".$head." - Enero - Junio ".$año."</tr><tr><th>Proyecto</th> <th>Desc. Proyecto</th> <th>Programa</th> <th>Sub Programa</th> <th>Asignado Anual</th> <th>Recibido</th> <th>Ejercido</th> <th>Comprobado</th></tr></thead>");
 for ($i=0; $i < sizeof($proy); $i++){
 	echo ("<tr id='non'><td>".$proy[$i]."</td> <td id='benef'>".utf8_decode($d_proy[$i])."</td> <td id='benef'>".utf8_decode($d_prog[$i])."</td> <td id='benef'>".utf8_decode($d_sub_prog[$i])."</td> <td id='monto'>".number_format($monto_proy[$i],2)."</td> <td id='monto'>".number_format($t[$i],2)."</td> <td id='monto'>".number_format($ejercido[$i],2)."</td> <td id='monto'>".number_format($comprobado[$i],2)."</td>");
 	echo ("</tr>");

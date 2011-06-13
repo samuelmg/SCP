@@ -54,7 +54,7 @@ for ($i=0; $i<$reg; $i++){
 	$arr_egreso = mysql_fetch_array($qry_egreso);
 	$egreso[$i] = $arr_egreso['sum(monto)'];
 
-	$sql_req = "select sum(monto) from tbl_req_oc where proy = '$proy' and cta = '$cta[$i]' and estatus not in ('Pagada','Cancelada') group by cta";//monto comprometido en requisiciones por cuenta
+	$sql_req = "select sum(monto) from tbl_req where proy = '$proy' and cta = '$cta[$i]' and estado not in ('P','C') group by cta";//monto comprometido en requisiciones por cuenta
 	$qry_req = mysql_query($sql_req);
 	$arr_req = mysql_fetch_array($qry_req);
 	$req[$i] = $arr_req['sum(monto)'];

@@ -10,7 +10,7 @@ include("../script/sui.php");
 include("../script/chxures.php");
 $usr = $_SERVER[PHP_AUTH_USER];
 $seleccion = usr($usr);
-cheques($seleccion);
+chxures($seleccion);
 ?>
 </body>
 </html>

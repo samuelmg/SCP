@@ -29,7 +29,7 @@ if ($cheque == ''){
 	$m=$fecha['mon'];
 	//echo("Hoy es: ".$fecha['mday']."/".$fecha['mon']."/".$fecha['year']."</div>");//Muestra la fecha actual
 
-	echo ("<table><thead><tr><th>Día</th> <th>Mes</th> <th>Año</th></tr></thead><tbody><tr> <td><input type='text' size='2' maxlength='2' name='d' value='$d'/></td> <td><input type='text' size='2' maxlength='2' name='m' value='$m' /></td> <td><input type='hidden' value='2008' size='4' name='a' />2008</td> </tr></tbody></table>");
+	echo ("<table><thead><tr><th>Día</th> <th>Mes</th> <th>Año</th></tr></thead><tbody><tr> <td><input type='text' size='2' maxlength='2' name='d' value='$d'/></td> <td><input type='text' size='2' maxlength='2' name='m' value='$m' /></td> <td><input type='hidden' value='2007' size='4' name='a' />2007</td> </tr></tbody></table>");
 
 	echo ("<table cellspacing='5'><thead><tr> <th>Cta Bancaria</th> <th>No. Cheque</th> <th>Cuenta (OG)</th> <th>Beneficiario</th> <th>Monto</th></tr></thead> <tbody align='center'><tr>");
 
@@ -68,9 +68,9 @@ if ($cheque == ''){
 
 	echo ("</tr></tbody></table><table cellspacing='5'><thead><tr> <th>Observaciones</th> <th>Id. (Participables)</th> </tr></thead><tbody><tr>");
 
-	//Captura de Observaciones
+	//Captura de Comentarios
 	echo ("<td>");
-	echo ("<input type='text' size='50' maxlength='50' name='obs' /></textarea>");
+	echo ("<input type='text' size='50' maxlength='50' name='cmt' /></textarea>");
 	echo ("</td>");
 
 	//Captura de ID para recursos Participables 
@@ -136,9 +136,9 @@ else{//Mismo Cheque con Otra Cuenta de Objeto de Gasto
 
 	echo ("</tr></tbody></table><table cellspacing='5'><thead><tr> <th>Observaciones</th> <th>Id. (Participables)</th> </tr></thead><tbody><tr>");
 
-	//Captura de Observaciones
+	//Captura de Comentario
 	echo ("<td>");
-	echo ("<input type='text' size='50' maxlength='50' name='obs' /></textarea>");
+	echo ("<input type='text' size='50' maxlength='50' name='cmt' /></textarea>");
 	echo ("</td>");
 
 	//Captura de ID para recursos Participables 
