@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head><TITLE>Captura de Proyecto</TITLE>
+<link rel="stylesheet" href="../css/cucei.css" />
+</head>
+<body>
+<h3>Captura de Proyecto</h3>
+<form name="captura_proyecto" method="post" action="captura_proyecto_script.php">
+
+<table align="center">
+<thead><tr><th>Ures</th> <th>Proyecto</th> <th>Nombre del Proyecto</th> <th>Monto</th> <th>Fondo</th> <th>Quincena</th> <th>Programa</th> <th>Eje</th></tr></thead>
+<tbody align="center"><tr>
+	<td><input name="ures" size="6" maxlength="6" type="text" /></td>
+	<td><input name="proy" size="6" maxlength="6" type="text" /></td>
+	<td><input name="d_proy" size="40" maxlength="45" type="text" /></td>
+	<td><input name="monto" size="10" maxlength="10" type="text" /></td>
+	<td><input name="fondo" size="10" maxlength="10" type="text" /></td>
+	<td><input name="quin" size="8" maxlength="2" type="text" value="1"/></td>
+	<td><input name="prog" size="8" maxlength="4" type="text" /></td>
+	<td><select name='eje'> <option>1</option> <option>2</option> <option>3</option> <option>4</option> <option>5</option> </select></td>
+</tr></tbody>
+</table>
+
+<table align="center">
+	<TR>
+	<TD><input type="submit" name="aceptar" value="Aceptar" /></TD>
+	<TD><input name="reset" type="reset" value="Limpiar" /></TD>
+	</TR>
+</table>
+</form>
+<!--Menú de Navegación-->
+<hr /><p><a id="btn_h" target="_self" href="./admin.html">Menú Principal</a></p>
+</body>
+</html>

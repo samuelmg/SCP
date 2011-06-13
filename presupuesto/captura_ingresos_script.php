@@ -1,25 +1,3 @@
-<?php
-/*
- * captura_ingresos_script.php
- * 
- * Copyright (C) 2005 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-?>
 <html>
 <head><TITLE>Captura de Ingresos</TITLE>
 <link rel="stylesheet" href="../css/cucei.css" />
@@ -34,13 +12,27 @@ $tipo=$_POST['tipo'];
 $cta_b=$_POST['cta_b'];
 $proy=$_POST['proy'];
 $cta=$_POST['cta'];
-$d_inv=$_POST['d_inv'];
+$id=$_POST['id'];
 $cmt=$_POST['cmt'];
 
 $d=$_POST['d'];
 $m=$_POST['m'];
 $a=$_POST['a'];
 $fecha=$a."-".$m."-".$d;
+
+//Validación para proyectos participables
+$sql_proy = "select proy from tbl_proyectos p, tbl_fondos f where p.fondo=f.fondo and f.tipo='PAR'";
+$qry_proy = mysql_query($sql_proy);
+while ($arr_proy = mysql_fetch_array($qry_proy)){
+	if ($proy == $arr_proy['proy']){
+		$sql_par = "select id from tbl_participables where proy = '$proy' and id = '$id'";
+		$qry_par = mysql_query($sql_par);
+		$arr_par = (mysql_fetch_array($qry_par));
+		if ($id != $arr_par['id'] || $id == ''){//Si el ID no está registrado cambia el valor del monto y benef_id para generar un error
+			$monto=0;
+		}
+	}
+}
 
 if ($monto!=0){
 if (checkdate($m,$d,$a)){ //Validación de Fecha
@@ -50,13 +42,14 @@ if (checkdate($m,$d,$a)){ //Validación de Fecha
 		}else{echo ("<h3>El Proyecto no Existe o no tiene la Cuenta</h3> <h4><a href='./captura_ingresos.php'>Volver al Formulario</a></h4>");}
 	}else {$proy=0;$cta=0; insert();}
 }else{echo ("<h3>Fecha Incorrecta</h3> <h4><a href='./captura_ingresos.php'>Volver al Formulario</a></h4>");}
-}else{echo ("<h3>Monto No Capturado</h3> <h4><a href='./captura_ingresos.php'>Volver al Formulario</a></h4>");}
+}else{echo ("<h3>Monto No Capturado o ID Incorrecta (Participables)</h3> <h4><a href='./captura_ingresos.php'>Volver al Formulario</a></h4>");}
 //Funcion que realiza el insert en la Base de Datos
+
 function insert(){
-global $fecha, $monto, $tipo, $cta_b, $proy, $cta, $d_inv, $cmt;
-if(mysql_query("insert into tbl_ingresos values ('$fecha','$monto','$tipo','$cta_b','$proy','$cta','$d_inv','$cmt')")){//Comprueba insert
+global $fecha, $monto, $tipo, $cta_b, $proy, $cta, $id, $cmt;
+if(mysql_query("insert into tbl_ingresos values ('$fecha','$monto','$tipo','$cta_b','$proy','$cta','$id','$cmt')")){//Comprueba insert
 	echo ("<p><h3>Captura realizada con Exito</h3>");
-	echo ("<table cellspacing='4'><thead><tr> <th>Tipo de Ingreso</th> <th>Monto</th> <th>Cuenta Bancaria</th> <th>Proyecto</th> <th>Cuenta (OG)</th> <th>Invoice</th> <th>Comentario</th> </tr></thead> <tbody align='center'><tr> <td>".$tipo."</td> <td>".number_format($monto,2)."</td> <td>".$cta_b."</td> <td>".$proy."</td> <td>".$cta."</td> <td>".$d_inv."</td> <td>".$cmt."</td> </tr></tbody></table></p>");
+	echo ("<table cellspacing='4'><thead><tr> <th>Tipo de Ingreso</th> <th>Monto</th> <th>Cuenta Bancaria</th> <th>Proyecto</th> <th>Cuenta (OG)</th> <th>ID</th> <th>Comentario</th> </tr></thead> <tbody align='center'><tr> <td>".$tipo."</td> <td>".number_format($monto,2)."</td> <td>".$cta_b."</td> <td>".$proy."</td> <td>".$cta."</td> <td>".$id."</td> <td>".$cmt."</td> </tr></tbody></table></p>");
 
 	//Menú de Navegación
 	echo ("<hr /><p><a id='btn_h' target='_self' href='./presupuesto.html'>Menú Principal</a>");

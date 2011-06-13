@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="iso-8859-1"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+"http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="es" lang="es">
+<head><TITLE>Captura de Fondo</TITLE>
+<link rel="stylesheet" href="../css/cucei.css" />
+</head>
+<body>
+<h3>Captura de Proyecto</h3>
+<form name="captura_fondo" method="post" action="captura_fondo_script.php">
+
+<table align="center">
+<thead><tr><th>Fondo</th> <th>Descripción</th> <th>Tipo</th> </tr></thead>
+<tbody align="center"><tr>
+	<td><input name="fondo" size="6" maxlength="6" type="text" /></td>
+	<td><input name="d_fondo" size="22" maxlength="20" type="text" /></td>
+	<td><select name="tipo"><option value="ORD">ORDINARIO</option><option value="EXT">EXTRAORDINARIO</option><option value="PAR">PARTICIPABLE</option></select></td>
+</tr></tbody>
+</table>
+
+<table align="center">
+	<TR>
+	<TD><input type="submit" name="aceptar" value="Aceptar" /></TD>
+	<TD><input name="reset" type="reset" value="Limpiar" /></TD>
+	</TR>
+</table>
+</form>
+<!--Menú de Navegación-->
+<hr /><p><a id="btn_h" target="_self" href="./admin.html">Menú Principal</a></p>
+</body>
+</html>

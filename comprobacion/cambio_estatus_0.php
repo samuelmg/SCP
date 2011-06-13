@@ -34,7 +34,7 @@ include("../script/res_comp.php");
 $usr = $_SERVER[PHP_AUTH_USER];
 $seleccion = usr($usr);
 
-$filtro='and ch.responsable = "'.$usr.'"';
+$filtro="and ch.responsable = '$usr' and (oficio is null or oficio='')";//Filtra por responsable de la poliza. No se puede cambiar el estatus si ya se capturó el oficio
 
 echo ("<form action='cambio_estatus_1.php' method='post'>");
 chxures_sel($seleccion,$filtro);

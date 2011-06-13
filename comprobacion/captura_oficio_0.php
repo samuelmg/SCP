@@ -34,7 +34,7 @@ include("../script/res_comp.php");
 $usr = $_SERVER[PHP_AUTH_USER];
 $seleccion = usr($usr);
 
-$filtro = 'and ch.responsable = "'.$usr.'"';
+$filtro = 'and ch.responsable = "'.$usr.'" and ch.estatus in ("Facturas","Comprobado")';
 
 echo ("<form action='captura_oficio_1.php' method='post'>");
 chxures_sel_oficio($seleccion,$filtro);

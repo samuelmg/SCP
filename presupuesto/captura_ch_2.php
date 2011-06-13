@@ -1,25 +1,3 @@
-<?php
-/*
- * captura_ch_2.php
- * 
- * Copyright (C) 2005 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-?>
 <html>
 <head><TITLE>Captura de Cheque</TITLE>
 <link rel="stylesheet" href="../css/cucei.css" />
@@ -37,26 +15,52 @@ settype($_POST['benef_id'],integer);
 $benef_id=$_POST['benef_id'];
 $monto=$_POST['monto'];
 $obs=$_POST['obs'];
-$d_inv=$_POST['d_inv'];
+$id=$_POST['id'];
 $d=$_POST['d'];
 $m=$_POST['m'];
 $a=$_POST['a'];
 $fecha=$a."-".$m."-".$d;
+$obs = utf8_encode($obs);
 
-if (checkdate($m,$d,$a)){ //Validación de Fecha
+//Validación de Fecha
+if (checkdate($m,$d,$a)){
+	//Validación para proyectos participables
+	$sql_proy = "select proy from tbl_proyectos p, tbl_fondos f where p.fondo=f.fondo and f.tipo='PAR'";
+	$qry_proy = mysql_query($sql_proy);
+	while ($arr_proy = mysql_fetch_array($qry_proy)){
+		if ($proy == $arr_proy['proy']){
+			$sql_par = "select id from tbl_participables where proy = '$proy' and id = '$id'";
+			$qry_par = mysql_query($sql_par);
+			$arr_par = (mysql_fetch_array($qry_par));
+			if ($id != $arr_par['id'] || $id == ''){//Si el ID no está registrado cambia el valor del monto y benef_id para generar un error
+				$benef_id=0;
+				$monto=0;
+			}
+		}
+	}
+
 	if ($cheque != 0 && $benef_id != 0 && $monto != 0){
 
-	if(mysql_query("insert into tbl_cheques values ('$fecha','$cta_b','$cheque','$proy','$cta','$benef_id','$monto','$obs','$d_inv','','','','','')")){
+	if(mysql_query("insert into tbl_cheques values ('$fecha','$cta_b','$cheque','$proy','$cta','$benef_id','$monto','$obs','$id','','','','','')")){
 	echo ("<p><h3>Captura realizada con Exito</h3>");
-	echo ("<table align='center' border='1'><tr> <td>Fecha</td> <td>Cta Bancaria</td> <td>No. Cheque</td> <td>Proyecto<td>Cuenta (OG)</td><td>ID Beneficiario</td> <td>Monto</td> <td>Observaciones</td> <td>Descripcion ID</td> </tr><tr> <td>".$fecha."</td> <td>".$cta_b."</td> <td>".$cheque."</td> <td>".$proy."</td> <td>".$cta."</td> <td>".$benef_id."</td> <td>".$monto."</td> <td>".$obs."</td> <td>".$d_inv."</td> <td>".$estatus."</td> </tr></table>");
+	echo ("<table align='center' border='1'><tr> <td>Fecha</td> <td>Cta Bancaria</td> <td>No. Cheque</td> <td>Proyecto<td>Cuenta (OG)</td><td>ID Beneficiario</td> <td>Monto</td> <td>Observaciones</td> <td>Id. (Participables)</td> </tr><tr> <td>".$fecha."</td> <td>".$cta_b."</td> <td>".$cheque."</td> <td>".$proy."</td> <td>".$cta."</td> <td>".$benef_id."</td> <td>".$monto."</td> <td>".$obs."</td> <td>".$id."</td> <td>".$estatus."</td> </tr></table>");
 
+	//Formulario oculto para capturar otra Cuenta (OG) para el mismo cheque
+/*	echo ("<p><form action='captura_ch_1.php' method='post'>");
+	echo ("<input type='hidden' name='no_cta_b' value='$cta_b'>");
+	echo ("<input type='hidden' name='no_cheque' value='$cheque'>");
+	echo ("<button type='submit' name='enviar'>Capturar Otra Cuenta</button>");
+	echo ("</form></p>");*/
+
+	//Formulario oculto para imprimir cheque
 	echo ("<p><form action='impresion_ch_2.php' method='post'>");
 	echo ("<input type='hidden' name='cta_b' value='$cta_b'>");
 	echo ("<input type='hidden' name='cheque' value='$cheque'>");
-	echo ("<button type='submit' name='enviar'>Imprimir Este Cheque</button>");
+	echo ("<button type='submit' name='enviar'>Imprimir Cheque</button>");
 	echo ("</form></p>");
+
 	//Menú de Navegación
-	/*echo ("<hr /><p><a id='btn_h' target='_self' href='./presupuesto.html'>Menú Principal</a>");*/
+	echo ("<hr /><p><a id='btn_h' target='_self' href='./presupuesto.html'>Menú Principal</a>");
 	echo ("<a id='btn_h' target='_self' href='./captura_ch_0.php'>Capturar Otro Cheque</a></p>");
 
 	}else{echo ("<h3>Error al Insertar</h3><form align='center' action='captura_ch_1.php' method='post'><input type='hidden' value='$proy' name='proy' /><button type='submit' name='aceptar'>Aceptar</button></form>");}

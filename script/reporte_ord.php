@@ -1,25 +1,4 @@
 <?php
-/*
- * reporte_ord.php
- * 
- * Copyright (C) 2005 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-
 function sxp_ord($proy){//Muestra el Saldo x Proyecto para el Fondo 1101
 global $cta;
 global $reg;
@@ -69,7 +48,7 @@ for ($i=0; $i<$reg; $i++){
 	$ing[$i] = $arr_ing['sum(monto)'];
 }
 //--Imprime los resultados en una tabla--
-echo ("<p><table border='1'><thead><tr> <th>Cuenta (OG)</th> <th>X Recibir</th> <th>Recibido</th> <th>Ejercido</th> <th>Requisiciones</th> <th>Reembolsos</th> <th>Saldo</th> </tr></thead><tbody align='right'>");
+echo ("<p><table border='1' id='info'><thead><tr> <th>Cuenta (OG)</th> <th>X Recibir</th> <th>Recibido</th> <th>Ejercido</th> <th>Requisiciones</th> <th>Reembolsos</th> <th>Saldo</th> </tr></thead><tbody>");
 for ($j=0; $j<$reg; $j++){
 	$saldo[$j] = $disp[$j]-$ch[$j]-$req[$j]+$ing[$j];
 	$sum_pendiente+=$pendiente[$j];
@@ -78,9 +57,9 @@ for ($j=0; $j<$reg; $j++){
 	$sum_req+=$req[$j];
 	$sum_ing+=$ing[$j];
 	$sum_saldo+=$saldo[$j];
-	echo ("<tr> <td align='center'>".$cta[$j]."</td> <td>".number_format($pendiente[$j],2)."</td> <td>".number_format($disp[$j],2)."</td> <td>".number_format($ch[$j],2)."</td> <td>".number_format($req[$j],2)."</td> <td>".number_format($ing[$j],2)."</td> <td>".number_format($saldo[$j],2)."</td> </tr>");
+	echo ("<tr> <td>".$cta[$j]."</td> <td id='monto'>".number_format($pendiente[$j],2)."</td> <td id='monto'>".number_format($disp[$j],2)."</td> <td id='monto'>".number_format($ch[$j],2)."</td> <td id='monto'>".number_format($req[$j],2)."</td> <td id='monto'>".number_format($ing[$j],2)."</td> <td id='monto'>".number_format($saldo[$j],2)."</td> </tr>");
 }
-echo ("<tr><td></td></tr><tr> <td align='center'>Total</td> <td>".number_format($sum_pendiente,2)."</td> <td>".number_format($sum_disp,2)."</td> <td>".number_format($sum_ch,2)."</td> <td>".number_format($sum_req,2)."</td> <td>".number_format($sum_ing,2)."</td> <td>".number_format($sum_saldo,2)."</td> </tr>");
+echo ("<td>Total</td> <td id='monto'>".number_format($sum_pendiente,2)."</td> <td id='monto'>".number_format($sum_disp,2)."</td> <td> id='monto'".number_format($sum_ch,2)."</td> <td id='monto'>".number_format($sum_req,2)."</td> <td id='monto'>".number_format($sum_ing,2)."</td> <td id='monto'>".number_format($sum_saldo,2)."</td> </tr>");
 echo ("</tbody></table></p>");
 }
 ?>

@@ -15,10 +15,10 @@ echo ("<h3>Listado de Proyectos</h3>");
 $sql_proy = "select ures, proy, d_proy, monto, fondo from tbl_proyectos where ures $seleccion order by ures, fondo, proy";
 $qry_proy = mysql_query($sql_proy);
 
-echo ("<table border='1'><thead><tr> <th>URes</th> <th>Proyecto</th> <th>Nombre</th> <th>Monto</th> <th>Fondo</th> </tr></thead> <tbody>");
+echo ("<table align='center' border='1' id='info'><thead><tr> <th>URes</th> <th>Proyecto</th> <th>Nombre</th> <th>Monto</th> <th>Fondo</th> <th colspan='3'>Reportes</th> </tr></thead> <tbody>");
 while ($row_proy=mysql_fetch_array($qry_proy)){
 	$proy = $row_proy['proy'];
-	echo ("<tr> <td>".$row_proy['ures']."</td> <td>".$row_proy['proy']."</td> <td>".utf8_decode($row_proy['d_proy'])."</td> <td align='right'>".number_format($row_proy['monto'],2)."</td> <td>".$row_proy['fondo']."</td>");
+	echo ("<tr id='par'> <td>".$row_proy['ures']."</td> <td>".$row_proy['proy']."</td> <td id='benef'>".utf8_decode($row_proy['d_proy'])."</td> <td id='monto'>".number_format($row_proy['monto'],2)."</td> <td>".$row_proy['fondo']."</td>");
 	echo ("<td><form align='center' action='chxp_1.php' method='post'><input type='hidden' value='$proy' name='proy' /><button type='submit' name='cheques'>Cheques</button></form></td>");
 	echo ("<td><form align='center' action='reqxp_1.php' method='post'><input type='hidden' value='$proy' name='proy' /><button type='submit' name='requisiciones'>Requisiciones</button></form></td>");
 	echo ("<td><form align='center' action='sxp_1.php' method='post'><input type='hidden' value='$proy' name='proy' /><button type='submit' name='saldo'>Saldo</button></form></td></tr>");

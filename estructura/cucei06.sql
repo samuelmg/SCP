@@ -187,6 +187,16 @@ CREATE TABLE IF NOT EXISTS `tbl_req` (
   KEY `proy` (`proy`),
   KEY `cta` (`cta`)
 ) ENGINE=MyISAM DEFAULT CHARSET=latin1;
+-- --------------------------------------------------------
+
+--
+-- Estructura de tabla para la tabla `tbl_tipos`
+--
+
+CREATE TABLE IF NOT EXISTS `tbl_tipos` (
+  `tipo` char(20) NOT NULL,
+  PRIMARY KEY (`tipo`)
+) ENGINE=MyISAM DEFAULT CHARSET=latin1;
 
 -- --------------------------------------------------------
 

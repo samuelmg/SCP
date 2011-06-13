@@ -1,25 +1,4 @@
 <?php
-/*
- * chxest.php
- * 
- * Copyright (C) 2005 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-
 function chxest($estatus, $seleccion){//Cheques no comprobados
 $sql_est = "select ch.cta_b, ch.cheque, ch.fecha, ben.benef, ch.monto, ch.proy, ch.cta, ch.estatus, ch.seguimiento from tbl_cheques ch, tbl_benef ben, tbl_proyectos p where ch.benef_id=ben.benef_id and ch.proy=p.proy and p.ures $seleccion and ch.estatus='$estatus' order by ch.cta_b, ch.cheque";
 $qry_est = mysql_query($sql_est);
@@ -33,12 +12,12 @@ echo ("<tr><td></td><td></td><td></td><td></td><td>".number_format($sum_monto,2)
 echo ("</tbody></table>");
 }
 function ch_comp($res, $seleccion){//Cheques en proceso de comprobación
-$sql_res = "select ch.cta_b, ch.cheque, ch.fecha, ben.benef, ch.monto, ch.proy, ch.cta, ch.responsable from tbl_cheques ch, tbl_benef ben, tbl_proyectos p where ch.benef_id=ben.benef_id and ch.proy=p.proy and ch.estatus in ('Facturas','Comprobado') and (oficio='' or oficio is NULL) and p.ures $seleccion and ch.responsable='$res' order by ch.cta_b, ch.cheque";
+$sql_res = "select ch.cta_b, ch.cheque, ch.fecha, ben.benef, ch.monto, ch.proy, ch.cta, ch.responsable, ch.fecha_c from tbl_cheques ch, tbl_benef ben, tbl_proyectos p where ch.benef_id=ben.benef_id and ch.proy=p.proy and ch.estatus in ('Facturas','Comprobado') and (oficio='' or oficio is NULL) and p.ures $seleccion and ch.responsable='$res' order by ch.cta_b, ch.cheque";
 $qry_res = mysql_query($sql_res);
 
-echo ("<table id='info' border='1'><thead><tr> <th>Cta Bancaria</th> <th>Cheque</th> <th>Fecha</th> <th>Beneficiario</th> <th>Monto</th> <th>Proyecto</th> <th>Cuenta</th> <th>Responsable</th> </tr></thead><tbody>");
+echo ("<table id='info' border='1'><thead><tr> <th>Cta Bancaria</th> <th>Cheque</th> <th>Fecha</th> <th>Beneficiario</th> <th>Monto</th> <th>Proyecto</th> <th>Cuenta</th> <th>Responsable</th> <th>Fecha C</th> </tr></thead><tbody>");
 while ($arr_res = mysql_fetch_array($qry_res)){
-	echo ("<tr> <td align='center'>".$arr_res['cta_b']."</td> <td align='center'>".$arr_res['cheque']."</td> <td>".$arr_res['fecha']."</td> <td>".utf8_decode($arr_res['benef'])."</td> <td align='right'>".number_format($arr_res['monto'],2)."</td> <td>".$arr_res['proy']."</td> <td>".$arr_res['cta']."</td> <td>".$arr_res['responsable']."</td> </tr>");
+	echo ("<tr> <td align='center'>".$arr_res['cta_b']."</td> <td align='center'>".$arr_res['cheque']."</td> <td>".$arr_res['fecha']."</td> <td>".utf8_decode($arr_res['benef'])."</td> <td align='right'>".number_format($arr_res['monto'],2)."</td> <td>".$arr_res['proy']."</td> <td>".$arr_res['cta']."</td> <td>".$arr_res['responsable']."</td> <td>".$arr_res['fecha_c']."</td> </tr>");
 	$sum_monto += $arr_res['monto'];
 }
 echo ("<tr><td></td><td></td><td></td><td></td><td>".number_format($sum_monto,2)."</td></tr>");

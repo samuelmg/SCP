@@ -35,21 +35,20 @@ $usr = $_SERVER[PHP_AUTH_USER];
 $seleccion = usr($usr);
 
 switch ($usr){
-	case norma:$filtro='and (ch.responsable = "Norma" or ch.responsable is null or ch.responsable = "")';break;
-	case cuquis:$filtro='and (ch.responsable = "Cuquis") and ch.benef_id!=37 and ch.estatus!="Comprobado"';break;
+	case raul:$filtro='and (ch.responsable = "Raul" and ch.estatus not in ("","Sin Comprobar"))';break;//impide el cambio de responsable de un cheque sin estatus o sin comprobar
+	case cuquis:$filtro='and ch.responsable = "Cuquis" and ch.benef_id!=37';break;
 	case karla:$filtro='and ch.responsable = "Karla"';break;
-	case martha:$filtro='and ch.responsable = "Martha"';break;
 	case blanca:$filtro='and ch.responsable = "Blanca"';break;
 	case chelo:$filtro='and ch.responsable = "Chelo"';break;
 }
 
 echo ("<form action='cambio_res_1.php' method='post'>");
-chxures_sel($seleccion,$filtro);//función que muestra los cheques segun el usuario, aplica un filtro y agrega un checkbox.
+chxures_sel($seleccion,$filtro);//funciï¿½n que muestra los cheques segun el usuario, aplica un filtro y agrega un checkbox.
 echo ("<table align='center'><tr><td><button type='submit' name='aceptar'>Aceptar</button></td>");
 echo ("<td><button type='reset' name='limpiar'>Limpiar</button></td> </tr></table>");
 echo ("</form>");
 ?>
-<!--Menú de Navegación-->
-<hr /><p><a id="btn_h" target="_self" href="./comprobacion.html">Menú Principal</a></p>
+<!--Menï¿½ de Navegaciï¿½n-->
+<hr /><p><a id="btn_h" target="_self" href="./comprobacion.html">Menï¿½ Principal</a></p>
 </body>
 </html>

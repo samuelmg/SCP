@@ -1,25 +1,3 @@
-<?php
-/*
- * ch_categoria_0.php
- * 
- * Copyright (C) 2005 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-?>
 <html>
 <head><TITLE>Proceso de Comprobación</TITLE>
 <link rel="stylesheet" href="../css/cucei.css" />
@@ -37,14 +15,17 @@
 	echo ("<option>Sin Clasificar</option>");
 	echo ("<option>Sin Comprobar</option>");
 	echo ("<option>Alta Pendiente</option>");
-	echo ("<option>Comprobados-En Proceso</option>");
-	echo ("<option>Norma</option>");
-	echo ("<option>Cuquis</option>");
+	//echo ("<option>Comprobados en Proceso</option>");
+	echo ("<optgroup label='En proceso'>");
+	echo ("<option>Raul</option>");
+	echo ("<option>Priscilla</option>");
 	echo ("<option>Blanca</option>");
 	echo ("<option>Chelo</option>");
-	echo ("<option>Karla</option>");
 	echo ("<option>Martha</option>");
+	echo ("</optgroup>");
 	echo ("<option>Dir Finanzas</option>");
+	echo ("<option>Cancelados</option>");
+	
 	?>
 	</select>
 	</td>

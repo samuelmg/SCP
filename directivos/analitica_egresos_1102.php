@@ -1,25 +1,3 @@
-<?php
-/*
- * analitica_egresos_1102.php
- * 
- * Copyright (C) 2005 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-?>
 <html>
 <head><TITLE>Analítica de Egresos</TITLE>
 <link rel="stylesheet" href="../css/cucei.css" />
@@ -39,28 +17,41 @@ while ($arr_proy = mysql_fetch_array($qry_proy)){
 	$i++;
 	}
 
-$periodo[0] = "'2006-01-01' and '2006-06-30'";
-$periodo[1] = "'2006-01-01' and '2006-01-31'";
-$periodo[2] = "'2006-02-01' and '2006-02-29'";
-$periodo[3] = "'2006-03-01' and '2006-03-31'";
-$periodo[4] = "'2006-04-01' and '2006-04-30'";
-$periodo[5] = "'2006-05-01' and '2006-05-31'";
-$periodo[6] = "'2006-06-01' and '2006-06-30'";
-$periodo[7] = "'2006-07-01' and '2006-07-31'";
-$periodo[8] = "'2006-08-01' and '2006-08-31'";
-$periodo[9] = "'2006-09-01' and '2006-09-30'";
-$periodo[10] = "'2006-10-01' and '2006-10-31'";
-$periodo[11] = "'2006-11-01' and '2006-11-30'";
-$periodo[12] = "'2006-12-01' and '2006-12-31'";
+$fecha=getdate();
+//$año=$fecha['year'];
+$año=2007;
+
+$periodo[0] = "'".$año."-01-01' and '".$año."-06-30'";
+$periodo[1] = "'".$año."-01-01' and '".$año."-01-31'";
+$periodo[2] = "'".$año."-02-01' and '".$año."-02-29'";
+$periodo[3] = "'".$año."-03-01' and '".$año."-03-31'";
+$periodo[4] = "'".$año."-04-01' and '".$año."-04-30'";
+$periodo[5] = "'".$año."-05-01' and '".$año."-05-31'";
+$periodo[6] = "'".$año."-06-01' and '".$año."-06-30'";
+$periodo[7] = "'".$año."-07-01' and '".$año."-07-31'";
+$periodo[8] = "'".$año."-08-01' and '".$año."-08-31'";
+$periodo[9] = "'".$año."-09-01' and '".$año."-09-30'";
+$periodo[10] = "'".$año."-10-01' and '".$año."-10-31'";
+$periodo[11] = "'".$año."-11-01' and '".$año."-11-30'";
+$periodo[12] = "'".$año."-12-01' and '".$año."-12-31'";
 
 echo ("<table id='info' border='1'><thead><tr><td>Proyecto</td> <td>1er Semestre</td> <td>Enero</td> <td>Febrero</td> <td>Marzo</td> <td>Abril</td> <td>Mayo</td> <td>Junio</td> <td>Julio</td> <td>Agosto</td> <td>Septiembre</td> <td>Octubre</td> <td>Noviembre</td> <td>Diciembre</td> </tr></thead>");
 for ($i=0; $i < sizeof($proy); $i++){
-	echo ("<tr><td align='center'>".$proy[$i]." ".$d_proy[$i]."</td>");
+	echo ("<tr id='non'><td id='benef'>".$proy[$i]." ".$d_proy[$i]."</td>");
 	for ($j=0; $j<13; $j++){
 		$sql_mes = "select sum(monto) from tbl_cheques where proy = $proy[$i] and fecha between $periodo[$j]";
 		$qry_mes = mysql_query($sql_mes);
 		$arr_mes = mysql_fetch_array($qry_mes);
-		echo ("<td align='right'>".number_format($arr_mes['sum(monto)'],2)."</td>");
+		$monto_ch = $arr_mes['sum(monto)'];
+
+		$sql_e = "select sum(monto) from tbl_egresos where proy = $proy[$i] and tipo != 'Devolucion' and fecha between $periodo[$j]";
+		$qry_e = mysql_query($sql_e);
+		$arr_e = mysql_fetch_array($qry_e);
+		$monto_e = $arr_e['sum(monto)'];
+
+		$total_mes = $monto_ch + $monto_e;
+
+		echo ("<td id='monto'>".number_format($total_mes,2)."</td>");
 	}
 	echo ("</tr>");
 }

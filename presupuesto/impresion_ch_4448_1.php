@@ -1,25 +1,3 @@
-<?php
-/*
- * impresion_ch_4448_1.php
- * 
- * Copyright (C) 2005 Samuel Mercado Garibay <samuel.mg@gmx.com>.
- * 
- * This file is part of SCP.
- * 
- * This program is free software: you can redistribute it and/or modify
- * it under the terms of the GNU General Public License as published by
- * the Free Software Foundation, either version 2 of the License, or
- * (at your option) any later version.
- * 
- * This program is distributed in the hope that it will be useful,
- * but WITHOUT ANY WARRANTY; without even the implied warranty of
- * MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the
- * GNU General Public License for more details.
- * 
- * You should have received a copy of the GNU General Public License
- * along with this program.  If not, see <http ://www.gnu.org/licenses/>.
- */
-?>
 <html>
 <head><TITLE>Impresión de Cheques (4448)</TITLE>
 <link rel="stylesheet" href="../css/cheque.css" />
@@ -64,7 +42,7 @@ echo ("<div id='benef'>".$benef."</div>");
 echo ("<div id='monto'>".number_format($monto,2)."</div>");
 echo ("<div id='letras'>".$monto_letra."</div>");
 echo ("<div id='proy'>".$concepto."</div>");
-echo ("<div id='inv'>".$descripcion."</div>");
+echo ("<div id='id_par'>".$descripcion."</div>");
 echo ("<div id='obs'>".$obs."</div>");
 echo ("<div id='haber'>".number_format($monto,2)."</div>");
 echo ("<div id='cta_haber'>4448</div>");
